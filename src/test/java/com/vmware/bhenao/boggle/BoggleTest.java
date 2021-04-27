@@ -34,7 +34,15 @@ public class BoggleTest {
 
     @Test
     void testNonExistingWords() {
-        String[] words = {"SNOGSS", "RHS"};
+        String[] words = {"TCE", "RHS", "OSPE", "A"};
+        for (String word : words) {
+            assertFalse(boggle.wordExists(word));
+        }
+    }
+
+    @Test
+    void testWordWithReusedLetters(){
+        String[] words = {"SNOGSS", "TGSNWT", "SCSNS", "RHRCPH"};
         for (String word : words) {
             assertFalse(boggle.wordExists(word));
         }
