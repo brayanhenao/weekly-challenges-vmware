@@ -18,6 +18,11 @@ gradlew build
 gradlew bootRun
 ```
 
+### Optional - Run the tests
+```shell
+gradlew test
+```
+
 ## Using [Paketo Buildpacks](https://paketo.io/) to build and run the application using OCI Images
 
 ### Building the image
