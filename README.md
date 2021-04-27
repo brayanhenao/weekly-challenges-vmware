@@ -15,7 +15,7 @@ gradlew build
 ### Run the application
 
 ```shell
-java com.vmware.bhenao.ProblemSolver
+gradlew run
 ```
 
 ## Using [Paketo Buildpacks](https://paketo.io/) to build and run the application using OCI Images
