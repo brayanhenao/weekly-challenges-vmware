@@ -3,9 +3,13 @@ package com.vmware.bhenao;
 import com.vmware.bhenao.boggle.Boggle;
 import com.vmware.bhenao.exceptions.StopPlayingException;
 import com.vmware.bhenao.interfaces.WeeklyProblem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 import static com.vmware.bhenao.constants.Constants.BOGGLE_PROBLEM;
@@ -15,10 +19,44 @@ import static com.vmware.bhenao.constants.Constants.EXIT;
 import static com.vmware.bhenao.constants.Constants.EXIT_NUMBER;
 import static com.vmware.bhenao.constants.Constants.LINE_BREAK;
 
-public class ProblemSolver {
+@SpringBootApplication
+public class ProblemSolver implements CommandLineRunner {
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+        log.info("STARTING THE APPLICATION");
+        SpringApplication.run(ProblemSolver.class, args);
+        log.info("APPLICATION FINISHED");
+    }
+
+    private void printInitialInformation() {
+        System.out.println(CHARACTER_FILLING);
+        System.out.println("####################################### Problem Solver #######################################");
+        System.out.println("##################################### bhenao@vmware.com ######################################");
+        System.out.println(CHARACTER_FILLING);
+        System.out.println(LINE_BREAK);
+    }
+
+    private void printProblemsOptions() {
+        System.out.println("Select the number problem you want to solve");
+        System.out.println(LINE_BREAK);
+        System.out.println(BOGGLE_PROBLEM_NUMBER + " - " + BOGGLE_PROBLEM);
+        System.out.println(EXIT_NUMBER + " - " + EXIT);
+    }
+
+    private void printFinalInformation() {
+        System.out.println(LINE_BREAK);
+        System.out.println(CHARACTER_FILLING);
+        System.out.println(CHARACTER_FILLING);
+        System.out.println(CHARACTER_FILLING);
+        System.out.println(CHARACTER_FILLING);
+    }
+
+    private static Logger log = LoggerFactory
+            .getLogger(ProblemSolver.class);
+
+    @Override
+    public void run(String... args) throws Exception {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -27,7 +65,6 @@ public class ProblemSolver {
         int selectedNumber = -1;
 
         while (wantToPlay) {
-
             printInitialInformation();
             printProblemsOptions();
             printFinalInformation();
@@ -57,28 +94,5 @@ public class ProblemSolver {
                 }
             }
         }
-    }
-
-    private static void printInitialInformation() {
-        System.out.println(CHARACTER_FILLING);
-        System.out.println("####################################### Problem Solver #######################################");
-        System.out.println("##################################### bhenao@vmware.com ######################################");
-        System.out.println(CHARACTER_FILLING);
-        System.out.println(LINE_BREAK);
-    }
-
-    private static void printProblemsOptions() {
-        System.out.println("Select the number problem you want to solve");
-        System.out.println(LINE_BREAK);
-        System.out.println(BOGGLE_PROBLEM_NUMBER + " - " + BOGGLE_PROBLEM);
-        System.out.println(EXIT_NUMBER + " - " + EXIT);
-    }
-
-    private static void printFinalInformation() {
-        System.out.println(LINE_BREAK);
-        System.out.println(CHARACTER_FILLING);
-        System.out.println(CHARACTER_FILLING);
-        System.out.println(CHARACTER_FILLING);
-        System.out.println(CHARACTER_FILLING);
     }
 }
