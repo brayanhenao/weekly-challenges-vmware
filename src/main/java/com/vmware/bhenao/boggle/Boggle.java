@@ -23,6 +23,10 @@ public class Boggle implements WeeklyProblem {
         this.boggleBoard = new char[4][4];
     }
 
+    public Boggle(char[][] boggleBoard) {
+        this.boggleBoard = boggleBoard;
+    }
+
     @Override
     public void Start() throws IOException, StopPlayingException {
         System.out.println(LINE_BREAK);
@@ -112,7 +116,7 @@ public class Boggle implements WeeklyProblem {
             line = reader.readLine();
             tokenizer = new StringTokenizer(line);
             for (int j = 0; j < 4; j++) {
-                boggleBoard[i][j] = tokenizer.nextToken().charAt(0);
+                boggleBoard[i][j] = tokenizer.nextToken().toUpperCase(Locale.ROOT).charAt(0);
             }
         }
     }
@@ -127,7 +131,7 @@ public class Boggle implements WeeklyProblem {
         }
     }
 
-    private void printBoard() {
+    public void printBoard() {
         String str = "|\t";
 
         for (int i = 0; i < 4; i++) {
@@ -140,7 +144,7 @@ public class Boggle implements WeeklyProblem {
         }
     }
 
-    private boolean wordExists(String word) {
+    public boolean wordExists(String word) {
         Queue<Character> wordQueue = new LinkedList<>();
         for (char c : word.toCharArray()) {
             wordQueue.add(c);
