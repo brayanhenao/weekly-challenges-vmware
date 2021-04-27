@@ -45,21 +45,19 @@ public class Boggle implements WeeklyProblem {
             System.out.println(LINE_BREAK);
             fillBoard();
             System.out.println(LINE_BREAK);
-            printBoard();
         } else {
             System.out.println(LINE_BREAK);
             fillRandomBoard();
             System.out.println(LINE_BREAK);
-            printBoard();
         }
 
 
         boolean nextWord = true;
-        selectedNumberWrong = true;
         selectedNumber = 0;
         String word;
 
         while (nextWord) {
+            printBoard();
             System.out.println(LINE_BREAK);
             System.out.println("Enter the word you want to search in the Boggle board");
             word = reader.readLine().toUpperCase(Locale.ROOT);
@@ -80,10 +78,10 @@ public class Boggle implements WeeklyProblem {
                 System.out.println("You want to search for more words?  (1 - Yes / 2 - No)");
                 try {
                     selectedNumber = Integer.parseInt(reader.readLine());
+                    selectedNumberWrong = false;
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid input. Please provide a valid number");
                 }
-                selectedNumberWrong = false;
                 if (selectedNumber == 2) {
                     nextWord = false;
                 }
@@ -97,13 +95,12 @@ public class Boggle implements WeeklyProblem {
             System.out.println("You want to keep solving more problems?  (1 - Yes / 2 - No)");
             try {
                 selectedNumber = Integer.parseInt(reader.readLine());
+                selectedNumberWrong = false;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please provide a valid number");
             }
             if (selectedNumber == 2) {
                 throw new StopPlayingException("Stop");
-            } else {
-                selectedNumberWrong = false;
             }
         }
     }

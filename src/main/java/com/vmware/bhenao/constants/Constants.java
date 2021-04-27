@@ -2,6 +2,9 @@ package com.vmware.bhenao.constants;
 
 public class Constants {
 
+    private Constants() {
+    }
+
     public static final int BOGGLE_PROBLEM_NUMBER = 1;
     public static final String BOGGLE_PROBLEM = "Boggle mayhem!";
 
